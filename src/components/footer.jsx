@@ -1,14 +1,42 @@
 "use client";
 
+import React, { useState } from "react";
 import { personalInfo } from "@/lib/data";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiMail } from "react-icons/hi";
 
 export function Footer() {
-  const handleSubmit = (e) => {
+  const [status, setStatus] = useState(null); // null, 'sending', 'success', 'error'
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real app, you would handle the form submission here
-    alert("Thank you! Your message has been sent (this is a demo).");
+    setStatus("sending");
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      topic: formData.get("topic"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        e.target.reset();
+        setTimeout(() => setStatus(null), 5000);
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      setStatus("error");
+    }
   };
 
   return (
@@ -59,6 +87,7 @@ export function Footer() {
                 <input
                   required
                   id="name"
+                  name="name"
                   type="text"
                   placeholder="Your Name"
                   className="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-zinc-900 dark:text-zinc-100"
@@ -69,6 +98,7 @@ export function Footer() {
                 <input
                   required
                   id="email"
+                  name="email"
                   type="email"
                   placeholder="name@example.com"
                   className="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-zinc-900 dark:text-zinc-100"
@@ -78,6 +108,7 @@ export function Footer() {
                 <label htmlFor="phone" className="text-sm font-medium px-1 text-zinc-900 dark:text-zinc-200">Phone</label>
                 <input
                   id="phone"
+                  name="phone"
                   type="tel"
                   placeholder="+91-0000000000"
                   className="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-zinc-900 dark:text-zinc-100"
@@ -89,6 +120,7 @@ export function Footer() {
               <textarea
                 required
                 id="topic"
+                name="topic"
                 rows="2"
                 placeholder="What would you like to talk about?"
                 className="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all resize-none text-zinc-900 dark:text-zinc-100"
@@ -96,10 +128,21 @@ export function Footer() {
             </div>
             <button
               type="submit"
-              className="w-full py-4 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-bold hover:opacity-90 transition-opacity active:scale-[0.98] cursor-pointer"
+              disabled={status === "sending"}
+              className="w-full py-4 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-bold hover:opacity-90 transition-opacity active:scale-[0.98] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Send Message
+              {status === "sending" ? "Sending..." : "Send Message"}
             </button>
+            {status === "success" && (
+              <p className="text-green-600 dark:text-green-400 text-sm text-center font-medium">
+                Message sent successfully to Telegram!
+              </p>
+            )}
+            {status === "error" && (
+              <p className="text-red-600 dark:text-red-400 text-sm text-center font-medium">
+                Something went wrong. Please try again.
+              </p>
+            )}
           </form>
         </div>
 
