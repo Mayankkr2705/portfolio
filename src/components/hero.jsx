@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiMail } from "react-icons/hi";
+import Link from "next/link";
 
 export function Hero() {
   return (
@@ -48,12 +49,18 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-wrap gap-4 mt-4"
         >
-          <a
-            href="#projects"
+          <Link
+            href="/#projects"
             className="px-6 py-3 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-medium flex items-center gap-2 hover:opacity-90 transition-opacity"
           >
             View My Work <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
+          <Link
+            href="/resume"
+            className="px-6 py-3 rounded-full border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 font-medium flex items-center gap-2 transition-colors"
+          >
+            View Resume
+          </Link>
           <div className="flex items-center gap-4 px-2">
             <a
               href={personalInfo.github}
