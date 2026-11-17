@@ -117,7 +117,7 @@ export const projects = [
   {
     title: "GreatWear",
     description: "A full-stack fashion content sharing platform with secure authentication and interactive community feed.",
-    image: "/GreatWear.png",
+    image: "/greatWEAR/1.png",
     tech: [
       { name: "React", icon: FaReact, color: "text-[#61dafb]" },
       { name: "Node.js", icon: FaNodeJs, color: "text-[#339933]" },
@@ -130,7 +130,7 @@ export const projects = [
   {
     title: "Appointment Booking Platform",
     description: "AI-powered diagnostics platform integrated with Google Gemini to reduce patient wait times and provide smart scheduling.",
-    image: "/Qmedx%20Appointment.png",
+    image: "/medicare ai/1.png",
     tech: [
       { name: "ReactJs", icon: FaReact, color: "text-[#61dafb]" },
       { name: "ExpressJs", icon: SiExpress, color: "text-zinc-800 dark:text-zinc-200" },
@@ -143,7 +143,7 @@ export const projects = [
   {
     title: "Mentor Signal",
     description: "Scalable predictive analytics system handling 10,000+ users with 90% prediction accuracy for at-risk students.",
-    image: "/MentorSignal.png",
+    image: "/mentorSignal/1.png",
     tech: [
       { name: "FastAPI", icon: SiFastapi, color: "text-[#05998b]" },
       { name: "Scikit-learn", icon: SiScikitlearn, color: "text-[#f7931e]" },

@@ -6,43 +6,55 @@ const selectedRepositories = [
   {
     name: "comicbook-main",
     title: "ComicBook",
+    description:
+      "A full-stack comic book platform for sharing, discovering, and engaging with illustrated stories.",
     tech: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
   },
   {
     name: "GreatWear",
     title: "GreatWear",
+    description:
+      "A full-stack fashion content sharing platform with secure authentication and an interactive community feed.",
     tech: ["React", "Node.js", "Firebase", "Cloudinary"],
   },
   {
     name: "AI-DOCTOR",
     title: "MediCare AI",
+    description:
+      "An AI-powered healthcare platform that helps users explore symptoms and access useful medical guidance.",
     tech: ["React", "Node.js", "Groq AI", "MongoDB"],
     images: [
-      "/medicare%20ai/m1.png",
-      "/medicare%20ai/m2.png",
-      "/medicare%20ai/m3.png",
-      "/medicare%20ai/m4.png",
+      "/medicare ai/1.png",
+      "/medicare ai/2.png",
+      "/medicare ai/3.png",
+      "/medicare ai/4.png",
     ],
   },
   {
     name: "Student-Drop-Prediction-SIH",
     title: "Mentor Signal",
+    description:
+      "A scalable predictive analytics system that helps identify students at risk and enables timely mentoring support.",
     tech: ["FastAPI", "Python", "Scikit-learn", "Vercel"],
-    images: ["/mentorSignal/MentorSignal.png"],
+    images: [
+      "/mentorSignal/1.png",
+      "/mentorSignal/2.png",
+      "/mentorSignal/3.png",
+      "/mentorSignal/4.png",
+      "/mentorSignal/5.png",
+    ],
   },
 ];
 
 selectedRepositories[0].images = [
-  "/Comic/c1%20(1).png",
-  "/Comic/c1%20(2).png",
-  "/Comic/c1%20(3).png",
-  "/Comic/c1%20(4).png",
+"/Comic/1.png",
+"/Comic/2.png",
+"/Comic/3.png",
 ];
 selectedRepositories[1].images = [
-  "/greatWEAR/GreatWear.png",
-  "/greatWEAR/GreatWear%20DashBoard.png",
-  "/greatWEAR/Screenshot%202026-11-12%20213449.png",
-  "/greatWEAR/Screenshot%202026-11-12%20213513.png",
+"/greatWEAR/1.png",
+"/greatWEAR/2.png",
+"/greatWEAR/3.png",
 ];
 
 function getGithubUsername() {
@@ -90,6 +102,7 @@ function toProject(repository, config, readme) {
   return {
     title: config.title,
     description:
+      config.description ||
       repository.description ||
       "A project built with modern web technologies and maintained on GitHub.",
     image:

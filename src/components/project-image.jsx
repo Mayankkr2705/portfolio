@@ -11,7 +11,7 @@ export function ProjectImage({ images, title }) {
 
     const interval = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % images.length);
-    }, 30000);
+    }, 10000);
 
     return () => window.clearInterval(interval);
   }, [images.length]);
